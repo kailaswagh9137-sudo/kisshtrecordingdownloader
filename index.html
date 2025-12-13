@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kissht Recording Downloader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<!-- =============== LOGIN SCREEN =============== -->
+<div id="loginScreen" class="login-container">
+    <div class="animated-bg"></div>
+    <div class="premium-box">
+        <div class="logo-container">
+            <div class="logo-icon">K</div>
+        </div>
+        <h1 class="brand-title">Kissht</h1>
+        <p class="brand-sub">Secure Access Portal</p>
+
+        <div class="input-group">
+            <label class="input-label">Email Address</label>
+            <input type="text" id="username" class="premium-input" placeholder="Enter your email">
+        </div>
+
+        <button onclick="sendOTP()" class="premium-btn primary-btn">
+            <span>Send OTP</span>
+            <div class="btn-shine"></div>
+        </button>
+
+        <div id="otpSection" class="hidden otp-section">
+            <div class="input-group">
+                <label class="input-label">One-Time Password</label>
+                <input type="text" id="otpInput" class="premium-input" placeholder="Enter 6-digit OTP">
+            </div>
+            <button onclick="verifyOTP()" class="premium-btn primary-btn">
+                <span>Verify & Login</span>
+                <div class="btn-shine"></div>
+            </button>
+        </div>
+
+        <p id="loginError" class="error-msg hidden"></p>
+    </div>
+</div>
+
+
+
+<!-- =============== DASHBOARD =============== -->
+<div id="dashboard" class="hidden">
+    <div class="animated-bg"></div>
+
+    <!-- NAVBAR -->
+    <div class="top-navbar">
+        <div class="navbar-brand">
+            <div class="logo-icon-small">K</div>
+            <h1>Recording Downloader</h1>
+        </div>
+        <button onclick="logout()" class="logout-btn">
+            <span class="power-icon">⏻</span>
+            <span>Logout</span>
+        </button>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+        <div class="upload-card">
+            <h2 class="card-title">Upload CSV File</h2>
+            <div class="upload-area">
+                <label for="csvInput" class="file-upload-label">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <span class="upload-text">Click to upload or drag & drop</span>
+                    <span class="upload-subtext">CSV files only</span>
+                    <input type="file" id="csvInput" accept=".csv">
+                </label>
+            </div>
+        </div>
+
+        <div class="actions-card">
+            <button id="manualDownload" class="premium-btn action-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Download All Recordings</span>
+                <div class="btn-shine"></div>
+            </button>
+
+            <button id="downloadCSV" class="premium-btn export-btn hidden">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="12" y1="18" x2="12" y2="12"></line>
+                    <line x1="9" y1="15" x2="15" y2="15"></line>
+                </svg>
+                <span>Export Updated CSV</span>
+                <div class="btn-shine"></div>
+            </button>
+        </div>
+
+        <div class="tracking-card">
+            <h2 class="card-title">Download Tracking</h2>
+            <div class="table-wrapper">
+                <table id="trackingTable">
+                    <thead>
+                        <tr>
+                            <th>Row</th>
+                            <th>URL</th>
+                            <th>Status</th>
+                            <th>Reason</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
